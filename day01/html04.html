@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML태그학습</title>
+</head>
+<body>
+    <h1>헤딩1</h1>
+    <hr>
+    <h2><a href="#lorem">헤딩2</a></h2>
+    <hr>
+    <h3>헤딩3</h3>
+    <h4>헤딩4</h4>
+    <h5>헤딩5</h5>
+    <h6>헤딩6: 글자크기가 작음</h6>
+    <p>문장영역입니다. 두 번째 문장입니다.<br> HTML에서는 엔터가 표현되지 않습니다. <br>
+        스페이스도 하나이상 표현이 안됩니다.<br>
+        그래서&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;특수문자를 사용합니다.
+        특수문자에는 &와 ; 사이에 문자로 표현합니다.<br>
+        &lt;b&gt; 와 같은 특수문자가 수천개 존재합니다. <br>
+        a태그 target=_blank(새탭), _self(현재페이지변경), _parent(부모창[탭]이 변경)
+        Oracle&trade; <a href="https://www.microsoft.com/" target="_blank">Microsoft &copy; Ltd.</a>
+    </p>
+    <p>문장영역2입니다.</p>
+    <div>첫번째 영역: CSS로 화면 디자인할때 영역을 구분할때 사용</div>
+    <div>두번째 영역: 화면디자인 시 무지막지학 많이 사용됨</div>
+    <p>세번째 문장영역입니다. 샘플텍스트를 만들어주는 기능이 존재합니다. <br>
+        lorem숫자를 입력하고 탭을 누릅니다. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati dignissimos corrupti ratione sapiente, nesciunt omnis impedit dolorum molestiae facere itaque, minus placeat quisquam vel adipisci explicabo ex veritatis saepe atque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam deleniti ut laboriosam illo voluptates qui quia debitis incidunt! Voluptatum, quasi.</p>
+    <p id="lorem"><b>Lorem</b> <strong>ipsum</strong> <i>dolor</i> <u>sit</u> <ins>amet</ins> 
+        <small>consectetur</small> E=mc<sup>2</sup><br>
+        log<sub>2</sub>(10)
+        <del>adipisicing elit.</del> Modi, eveniet labore vero libero debitis dolor dolorem ratione commodi hic eligendi at blanditiis quos itaque sed dignissimos non obcaecati temporibus praesentium.</p>
+    <h3>네비게이션 메뉴</h3>
+    <p>메뉴는 대부분 ul(unordered list)로 생성합니다.</p>
+    <ol>
+        <li><a href="https://mail.naver.com/" target="_blank">메일</a></li>
+        <li>카페</li>
+        <li>블로그</li>
+        <li>스토어</li>
+        <li>뉴스</li>
+    </ol>
+    <h3>테이블</h3>
+    <p>Xaml에 Grid와 동일한 기능</p>
+    <table border="1">
+        <tr>
+            <th>1번</th>
+            <th>2번</th>
+            <th>3번</th>
+            <th>4번</th>
+        </tr>
+        <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+            <td>rowspan=2</td>
+        </tr>
+        <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+            <!--<td>400</td>-->
+        </tr>
+        <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+            <td>colspan=2</td>
+        </tr>
+    </table>
+    <h3>이미지</h3>
+    <image src="../image/wpf0025.png" width="400"/>
+</body>
+</html>
