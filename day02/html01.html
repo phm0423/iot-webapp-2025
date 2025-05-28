@@ -18,58 +18,53 @@
         /* 태그선택자 중 속성선택자 */
         input[type="text"] {
             background-color: antiquewhite;
-        }
-        input[type="password"] {
+        }        
+        input[type='password'] {
             background-color: aquamarine;
         }
         input[type="submit"] {
             background-color: blue;
             color: white;
-        }    
+        }
         #section .title {
             color: brown;
         }
         #section > p {
             color: blue
         }
-        /* 반응, 상태 선택자*/
+        /* 반응,상태 선택자 */
         input:focus {
             background-color: blueviolet;
         }
         input:disabled {
             background-color: gainsboro;
         }
-
+        
         #menu {
             overflow: hidden;
         }
-        #menu li {
+        #menu li { 
             list-style: none;
             /* 
-            WPF: l, t, r, b
-            CSS: t, r, b, l
+            WPF : l, t, r, b 
+            CSS : t, r, b, l
             */
             float: left; padding: 10px 5px 15px 20px;
         }
-        /* 구조선택자*/
+        /* 구조선택자 */
         #menu li:nth-child(2n) {
             background-color: #FF0003;
         }
-        #menu li:nth-child(2n-1) {
+        #menu li:nth-child(2n+1) {
             background-color: #800000;
         }
         #menu li:first-child {
             border-radius: 10px 0 0 10px;
         }
         #menu li:last-child {
-            border-radius: 0 10px 10px   0;
+            border-radius: 0 10px 10px 0;
         }
-
-        p:nth-child(1) {font-size: 100%;}
-        p:nth-child(2) {font-size: 100%;}
-        p:nth-child(3) {font-size: 120%;}
-        p:nth-child(4) {font-size: 150%;}
-        p:nth-child(5) {font-size: 190%;}
+        
     </style>
 </head>
 <body>
@@ -81,13 +76,13 @@
     </ul><br>
     <form>
         <input type="text" value="hugo"><br>
-        <input type="password" value="12345"><br>
+        <input type="password" value="12345" disabled><br>
         <input type="submit">
     </form>
 
     <div id="section">
         <h2 class="title">Lorem, ipsum.</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <!-- <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p> -->
     </div>
 
     <ul id="menu">
@@ -98,10 +93,6 @@
         <li>트위터</li>
     </ul>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, repellendus!</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, repellendus!</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, repellendus!</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, repellendus!</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, repellendus!</p>
+    
 </body>
 </html>

@@ -10,7 +10,7 @@
             width: 100px; height: 100px;
             border: 20px solid blue;
             margin: 30px;
-            padding: 10px;
+            padding: 10px;       
             /* 이게 너무 길어서 위를 사용
             border-top: 20px;
             border-right: 20px;
@@ -23,22 +23,22 @@
 
         .box {
             /* 
-            black 페이지 넓이대로
+            block 페이지 넓이대로 
             inline-block 텍스트크기만큼
             none 화면에 표시안함
             inline 인라인(태그자체의 크기만큼)
-            */
+            */            
             display: inline-block;
             border-color: black;
-            border-width: thick;
+            border-width: 10px; /* thick */
             border-style: dashed;
             border-radius: 15px 20px 30px 40px;
         }
     </style>
 </head>
-<body>
+<body>    
     <div id="out_div">
-        <div id="inn_div">
+        <div id="inn_div">            
             BOX
         </div>
 

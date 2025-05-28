@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Object</title>
+    <title>JavaScript Object</title>    
 </head>
 <body>
     <script>
         // 객체 선언
-        // JSON: JavaScript Object Notation
-        var dried_mango = {
-            name: '7D Dried mango',
-            manufacturer: '7D Foods Corporation',
-            weight: '500g',
-            origin: 'Philippines',
+        // JSON : JavaScript Object Notation
+        let dried_mango = {
+            name: "7D Dried mangoes",
+            manufacturer: "7D Foods Corporation",
+            weight: "500g",
+            origin: "Philippines",
             calories: 320,
             method: function(man) {
-                alert(this.name + "를 " + man + "가 먹습니다."); // JS내에서만 가능
-            }
+                alert(this.name + "를 " + man + "가 먹습니다.");  // JS 내에서만 가능
+            },
         }
 
         console.log(dried_mango);

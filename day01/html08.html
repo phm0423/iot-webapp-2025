@@ -7,55 +7,55 @@
     <title>CSS 예제</title>
     <!-- CSS 설정 -->
     <style>
-        * { /* 웹페이지내 모든 요소 All의 의미*/
-            /* font-size: 10px; */
+        * { /* 웹페이지내 모든 요소. All의 의미 */
+            /* font-size: 10px;  */
             margin: 0px;
         }
-        body, p, h1, h2, h3, h4, h5, h6{
-            /*여러개 태그를 사용가능 */
+        body, p, h1, h2, h3, h4, h5, h6 {
+            /* 여러개 태그를 사용가능 */
             color: aqua;
         }
         h1 {
-            color: crimson;
+            color: crimson;            
         }
         div {
             padding: 0px;
         }
-        #header {   /* 아이디 속성은 # */
-            background-color: antiquewhite;
+        #header { /* 아이디 속성은 # */
+            background-color: antiquewhite;  
             width: 700px;
-            margin: 0 auto; /* auto는 정중앙에 위치시킴 */
+            margin: 0 auto; /* auto는 정중아에 위치시킴*/
         }
         #nav {
             background-color: azure;
             width: 700px;
             margin: 0 auto;
         }
-        #container{
+        #container {
             background-color: beige;
             width: 700px;
             margin: 0 auto;
         }
-        .temp   {/* 클래스 속성은 . */
+        .temp { /* 클래스 속성은 . */
             font-size: 20px;
         }
-        #aside{
+        #aside {
             background-color: bisque;
             width: 200px;
             height: 100%;
             float: right;
         }
-        #contents{
+        #contents {
             font-size: 20px;
             background-color: burlywood;
             width: 500px;
             height: 100%;
-            float: left ;
+            float: left;            
         }
-        #footer{
+        #footer {
             background-color: blueviolet;
             width: 700px;
-            height: 100%; /* 높이의 %는 적용이 안됨*/
+            height: 100%; /* 높이의 %는 적용이 안됨 */
             margin: 0 auto;
         }
 
@@ -73,11 +73,11 @@
 
 <body>
     <div id="header">
-        <!--로고 영역-->
+        <!-- 로고 영역 -->
         <h1>로고영역</h1>
     </div>
     <div id="nav" class="temp">
-        <!--네비게이션 영역-->
+        <!-- 네비게이션 영역 -->
         <ul>
             <li>메일</li>
             <li>카페</li>
@@ -88,9 +88,9 @@
             <li>부동산</li>
         </ul>
     </div>
-    <div id="container" class="temp">
-        <!--메인 영역-->
-        <div id="aside">
+    <div id="container">
+        <!-- 메인 영역 -->
+        <div id="aside" class="temp">
             <h3>aside</h3>
         </div>
         <div id="contents">
@@ -98,7 +98,7 @@
         </div>
     </div>
     <div id="footer">
-        <!--푸터 영역-->
+        <!-- 푸터 영역 -->
         <h3>footer</h3>
     </div>
 </body>
