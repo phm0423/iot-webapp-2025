@@ -551,4 +551,17 @@
 ### ASP.NET Core
 
 #### ASP.NET Core MVC - Kelly Portfolio 디자인 클로닝(계속)
-1. to be continued...
+1. _Layout.cshtml 작업 계속
+    - head, nav, footer, script영역 공통부분
+    - main.js 소스를 site.js로 복사/붙여넣기
+    - 원본 head의 google font 태그 그대로 사용
+    - ASP.NET Core에서 생성한 <link rel="stylesheet" href="~/MyPortfolioWebApp.styles.css" asp-append-version="true" /> 주석처리
+2. 원본 이미지 등 정적리소스를 변경시 반영아노디는 경우
+    - 웹브라우저에 캐시가 남아있기 때문
+    - 웹브라우저 설정 > 개인정보 보호 및 보안> 인터넷 사용기록 및 삭제 > 전체삭제
+    - 웹브라우저가 없는 리소스는 재다운로드
+3. HomeController에 About 메서드 생성
+    - 뷰 추가
+    - ASP.NET Core 링크 asp-controller, asp-action 속성을 사용해야
+4. About.cshtml 수정
+    - CSS 부터 적용
