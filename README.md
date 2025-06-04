@@ -73,6 +73,7 @@
 - img, audio, video : 이미지, 오디오, 비디오 
 - [소스](./day01/html05.html), [소스](./day01/html06.html)
 - form, input, button, select, textarea, label : 입력양식, 텍스트박스, 버튼, 콤보박스, 여러줄텍스트박스, 라벨
+    - form action에 `get`과 `post`. (dialog는 무시)
 - progress : 진행률
 - div, span : 공간분할
 
@@ -383,7 +384,7 @@
 
     https://github.com/user-attachments/assets/d205515e-3edc-4a2a-a538-a08137dad2b1
 
-### 5일차
+## 5일차
 
 ### 웹개발 기술 용어
 - SPA : Single Page Applicaiton. 페이지를 이동해도 새로고침 없이 한페이지에서 작동하는 웹
@@ -546,22 +547,278 @@
 
     <img src="./image/web0013.png" width="600">
 
-## 5일차
+## 6일차
 
 ### ASP.NET Core
 
 #### ASP.NET Core MVC - Kelly Portfolio 디자인 클로닝(계속)
-1. _Layout.cshtml 작업 계속
-    - head, nav, footer, script영역 공통부분
+1. Properties> launchSettgins.json
+    - hotReloadEnabled 설정키 추가
+2. _Layout.cshtml 작업 계속
+    - head, nav, footer, script영역 공통부분 
     - main.js 소스를 site.js로 복사/붙여넣기
     - 원본 head의 google font 태그 그대로 사용
     - ASP.NET Core에서 생성한 <link rel="stylesheet" href="~/MyPortfolioWebApp.styles.css" asp-append-version="true" /> 주석처리
-2. 원본 이미지 등 정적리소스를 변경시 반영아노디는 경우
+3. 원본 이미지 등 정적리소스를 변경시 반영안되는 경우
     - 웹브라우저에 캐시가 남아있기 때문
-    - 웹브라우저 설정 > 개인정보 보호 및 보안> 인터넷 사용기록 및 삭제 > 전체삭제
+    - 웹브라우저 설정 > 개인정보 보호 및 보안 > 인터넷 사용기록 및 삭제 > 전체삭제
     - 웹브라우저가 없는 리소스는 재다운로드
-3. HomeController에 About 메서드 생성
+4. HomeController에 About 메서드 생성
     - 뷰 추가
     - ASP.NET Core 링크 asp-controller, asp-action 속성을 사용해야
-4. About.cshtml 수정
+5. About.cshtml부터 Contact.cshtml까지
     - CSS 부터 적용
+   
+6. DB연동
+    - NuGet 패키지
+        - Bogus (Python Faker 라이브러리)
+        - `Microsoft.EntityFrameworkCore` 8.0.x
+        - `Microsoft.EntityFrameworkCore.Tools` 8.0.x
+        - `Pomelo.EntityFrameworkCore.MySql` 8.0.3
+        - EntityFrameworkCore는 전부 Version Major 숫자가 일치해야 함(현재 8버전)
+    - **EntityFramework** `Code First` 방식 - C#으로 클래스 작성하고 위저드를 통해서 DB를 만드는 방식
+        - DB를 잘 몰라도 웹개발 가능토록 만든 기술
+
+    - Model > News 클래스 생성
+    - appsettings.json, DB연결문자열 추가
+    - Model > ApplicationDbContext 클래스 생성
+    - Progam.cs에서 초기화 설정에 DB연결을 추가
+
+    - 도구>NuGet패키지 관리자> 패키지 관리자 콘솔로 진입. 아래의 1, 2번 명령어를 순차적 실행
+        ```shell
+        PM1> add-migration AddNewsToDatabase
+        Build started...
+        Build succeeded.
+        To undo this action, use Remove-Migration.
+        PM2> update-database
+        Build started...
+        ...
+        Build succeeded.
+        ...
+        Done.
+        PM>
+        ```
+    - MySQL Workbench 해당 스키마(DB)에 News 테이블 생성 확인, 더미데이터 입력
+    - NewsController 클래스 생성
+    - `Entity Framework를 사용하여 뷰가 포함된 MVC 컨트롤러` 선택
+
+    <img src="./image/web0014.png" width="600">
+
+7. Controller 설명
+    - CRUD 중
+        - SELECT는 GET메서드만 존재
+        - 데이터가 처리되면 INSERT, UPDATE, DELETE 기능에는 GET, POST메서드 둘 다 필요
+        - form 태그의 `asp-action`이 POST 메서드
+
+8. 개발콘솔에서 CRUD 로그 확인
+
+    <img src="./image/web0015.png" width="600">
+
+9. 작업화면
+
+    https://github.com/user-attachments/assets/33b49f9b-946b-44ae-9ad2-ae6521bf1e7d
+    
+
+## 7일차
+
+### ASP.NET Core
+
+#### EntityFramework DB First
+- DB를 먼저 설계하고 관련된 C#코드를 위저드가 자동으로 만들어주는 방식
+- EntityFramework DB연동방식 : ORM(Object-Relational Mapping) 방식
+    - 제일 최근의 DB연동기법
+    - Spring Boot JPA, myBatis 과 동일
+    - EntityFramework - WPF, 윈앱, 웹앱
+- DB의 테이블 내용을 VS Models에 가져온 이후는 Code First, DB First 작업이 동일
+- 자동 완성으로 그냥 사용은 불가. 수정이 필요
+
+#### EF DB First 연습
+1. 프로젝트 생성
+2. NuGet 패키지 관리자
+    - Microsoft.EntityFrameworkCore 8.0.16
+    - Microsoft.EntityFrameworkCore.Tools 8.0.16
+    - Microsoft.EntityFrameworkCore.Design 8.0.16 (옵션)
+    - `MySql.EntityFrameworkCore` 8.0.14 (DB First시 반드시 필요!!)
+    - Pomelo.EntityFrameworkCore.MySql 8.0.3
+3. appsetting.json에 DB연결 문자열 추가
+4. NuGet 패키지 관리자 콘솔에서 해당 프로젝트로 변경(기본프로젝트 드롭다운)
+5. 아래 내용 입력
+
+    ```shell
+    PM> dir
+        디렉터리: C:/Source/iot-webapp-2025/day07/Day07Study
+
+    Mode                 LastWriteTime         Length   Name                                                                                                                                      
+    ----                 -------------         ------   ----                                                                                                                                      
+    d-----        2025-05-30   오전 9:32                DbFirstWebApp
+    d-----        2025-05-30   오전 9:22                MyPortfolioWebApp                                                                                                                         
+    -a----        2025-05-29   오전 9:35           1158 Day07Study.sln  
+
+    PM> cd ./DbFirstWebApp  
+    PM> Scaffold-DbContext "Server=localhost;Database=bookrentalshop;Uid=root;Pwd=12345;Charset=utf8;" 
+        MySql.EntityFrameworkCore -OutputDir Models
+    Build started...
+    Build succeeded.
+    ...
+    PM> 
+    ```
+6. Visual Studio 프로젝트 Models 폴더 생성된 클래스 확인
+7. Program.cs DB연결 초기화 추가
+8. BookrentalshopContext.cs 내 OnConfiguring 메서드 주석처리!
+9. BookController 컨트롤러(Entity Framework를 사용하여 뷰가 포함된 MVC 컨트롤러) 생성
+10. _Layout.cshtml 네비게이션 메뉴 추가
+11. 실행확인
+
+    <img src="./image/web0017.png" width="600">
+
+12. 자동으로 만들 경우의 문제점
+    - Model의 관계 부분에서 부모로의 연결이 Not Null로 연결됨. CUD 작업 불가
+    - EF Core의 탐색 속성(Navigation Property)
+    - = null!로 정의되어 있어서 EF Core는 내부적으로 필수(NOT NULL) 관계라고 간주
+    - public virtual Divtbl DivisionNavigation { get; set; } **= null!**; 
+    - public virtual Divtbl? DivisionNavigation { get; set; } 로 변경
+
+    - HACK : 자동 생성 후 수정 주석부분 확인 | BookController, Model, View 확인할 것
+
+    <img src="./image/web9998.png" width="600">
+
+13. WebEditor 클라이언트 라이브러리 Trumbowyg 설치
+    - 클라이언트 라이브러리 추가
+
+    <img src="./image/web9997.png" width="600">
+
+14. Markdown Viewer
+    - NuGet 패키지 관리자, Westwind.AspNetCore.Markdown 설치
+
+15. 메일관련
+    - [소스확인](./ref/Day07Study/MyPortfolioWebApp/Controllers/HomeController.cs)
+
+16. 메뉴 활성화
+    - _Layout.cshtml 내에 작성
+
+    ```cs
+    // cshtml 상단.
+    @using Microsoft.AspNetCore.Mvc.Rendering
+    @inject Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper Html
+
+    @functions {
+        bool IsActive(string controller, string action)
+        {
+            var routeData = ViewContext.RouteData;
+            var currentAction = routeData.Values["action"]?.ToString();
+            var currentController = routeData.Values["controller"]?.ToString();
+
+            return string.Equals(controller, currentController, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(action, currentAction, StringComparison.OrdinalIgnoreCase);
+        }
+
+        string ActiveClass(string controller, string action) =>
+            IsActive(controller, action) ? "active" : "";
+    }
+    ```
+
+    ```html
+    <li><a asp-controller="Home" asp-action="Index" class="@ActiveClass("Home", "Index")">Home</a></li>
+    ```
+
+## 8일차
+
+#### ASP.NET Core MVC - Kelly Portfolio 디자인 클로닝(계속)
+1. 뉴스 게시글 수정
+    - 리스트 CSS 작성(제목줄 스타일, 행별 배경색, 마우스오버시 배경색변경)
+    - Model에서 Validation Check 에러나는 타입은 string밖에 없음
+    - public string Writer -> `public string? Writer`로 변경!!
+    - Create.cshtml과 Edit.cshtml에서 필요없는 `입력값 필드`(Writer, PostDate, ReadCnt) 삭제
+    - 뷰화면 스타일 조정(container 넓이) 맞추기
+    - Create, Edit `포스트 메서드 수정`
+    - Delete는 간단함
+    - 뉴스 조회건을 최신건을 위로 정렬
+2. 게시글 조회수 올리기
+3. 토스트 메시지
+    - 컨트롤러에서 뷰에 보이고 싶은 데이터를 전달하는 변수
+        - ViewData, ViewBag, TempData 등
+    - Partial View 생성
+
+        <img src="./image/web0019.png" width="500">
+
+        - View.cshtml -> _Notification.cshtml 변경
+        - Index.cshtml에 TempData로 집어넣은 부분을 이동
+        - Index에 `<partial name="_Notification">` 추가
+    - Toastr 클라이언트 라이브러리 사용
+        - Github 설명대로 css, js 링크 추가
+    - _Notification.cshtml 코드 수정
+
+4. HTML 에디터 추가
+    - 본문 내용을 HTML화 해서 괜찮은 디자인의 컨텐츠가 되도록 만드는 컴포넌트
+    - 유사한 라이브러리 : Trumbowyg, CKEditor 5(기능최대), summernote, TinyMCE, Quill(단순)
+    - Trumbowyg 클라이언트 라이브러리 설치(NuGet패키지와 차이있음)
+    - wwwroot > 마우스오른쪽 > 추가 > 클라이언트 쪽 라이브러리
+    - Trumbowyg 검색 후 설치
+
+        <img src="./image/web0020.png" width="500">
+
+    - _Layout.cshtml에 css, js 링크 추가
+    - Create.cshtml, Edit.cshtml `<input asp-for="Descrption">` -> `<textarea>` 로 변경
+    - Site.js 마지막에 trumbowyg 초기화 함수 추가작성
+    - 뷰어 라이브러리 : Westwind.AspNetCore.Markdown NuGet패키지 라이브러리
+    - Detail.cshtml, Delete.cshtml에 라이브러리 using Westwind.AspNetCore.Markdown 추가
+    - Description 태그 부분 수정 @Markdown.ParseHtmlString(Model.Description)
+
+        <img src="./image/web0021.png" width="600">
+
+5. EntityFramework로 자동 생성된 테이블 컬럼타입변경
+    - LONGTEXT로 타입이 지정된 컬럼은 사용여부에 따라 VARCHAR(num)로 변경
+
+        <img src="./image/web0022.png" width="600">
+
+5. 페이징
+    - 웹페이지 게시판에서 가장 중요한 기능. 가장 일반적인 데이터 로딩 방식
+    - 한 페이지에 대량의 데이터를 부르면 성능문제 발생
+    - EntityFramework에서 쿼리, 저장프로시저 사용가능
+
+        ```sql
+        CREATE PROCEDURE `New_PagingBoard`(
+            startCount int,
+            endCount int    
+        )
+        BEGIN
+            -- 제일 중요한 값은 ROW_NUMBER()
+            SELECT * 
+            FROM (
+            SELECT ROW_NUMBER() OVER (ORDER BY Id DESC) AS rowNum,
+                    Id, Writer, Title, Description, PostDate, ReadCount
+                FROM News
+            ) AS b
+            WHERE b.rowNum BETWEEN startCount AND endCount;
+
+        END
+        
+        ```
+
+    - 저장프로시저는 CALL New_PagingBoard(1, 10), CALL New_PagingBoard(11, 20) 식으로 호출
+    - NewsController Index() 메서드 완전 수정!
+    - index.cshtml에 Viewbag 영역 복사
+
+        ```html
+        @{
+            // 컨트롤러 변수값이 바로 사용할 수 없음
+            // ViewBag, ViewData, TempData로 전달
+            var startPage = ViewBag.StartPage;
+            var endPage = ViewBag.EndPage;
+            var page = ViewBag.Page;
+            var totalPage = ViewBag.TotalPage;
+        }
+        ```
+
+    - index.cshtml 게시판 영역 아래에 페이징부분 작성
+
+        <img src="./image/web0023.png" width="600">
+
+## 9일차 (25.06.04.)
+
+#### ASP.NET Core MVC - Kelly Portfolio 클로닝 (계속)
+1. 뉴스페이징 완료
+2. 게시판 완료
+3. 정적페이지 DB연동
+4. 한글화
+5. 마무리
