@@ -315,7 +315,7 @@ namespace MyPortfolioWebApp.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Langauge")
+                    b.Property<string>("Language")
                         .IsRequired()
                         .HasColumnType("longtext");
 

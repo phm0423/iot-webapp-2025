@@ -76,7 +76,7 @@ namespace MyPortfolioWebApp.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Langauge = table.Column<string>(type: "longtext", nullable: false)
+                    Language = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Level = table.Column<float>(type: "float", nullable: false)
                 },
